@@ -1,0 +1,15 @@
+<?php
+namespace {newModuleNamespace}\components; // 申明命名空间
+// 引用类
+
+/**
+ * Created by generate tool of phpcorner.
+ * Link         :   {link}
+ * User         :   {user}
+ * Date         :   {date}
+ * Version      :   1.0
+ */
+abstract class Controller extends \Render\Abstracts\Controller
+{
+
+}

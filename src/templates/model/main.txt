@@ -1,0 +1,65 @@
+<?php
+namespace {moduleNamespace}\models; // 申明命名空间
+// 引用类
+use Abstracts\DbModel;
+
+/**
+ * Created by generate tool of phpcorner.
+ * Link         :   {link}
+ * User         :   {user}
+ * Date         :   {date}
+ * Version      :   1.0
+ *
+ * This is the model class for table "{table_name_expression}".
+ * The followings are the available columns in table '{table_name_expression}':{properties}
+ */
+class {className} extends DbModel
+{
+    /**
+     * 获取 db-model 实例
+     * @param string|null $className active record class name.
+     * @return DbModel|{className}
+     */
+    public static function model($className = __CLASS__)
+    {
+        return parent::model($className);
+    }
+
+    /**
+     * 数据表名
+     * @return string
+     */
+    public function tableName()
+    {
+        return '{table_name_expression}';
+    }
+
+    /**
+     * 定义并返回模型属性的验证规则
+     * @return array
+     */
+    public function rules()
+    {
+        return [{rules}
+        ];
+    }
+
+    /**
+     * 数据表关联
+     * @return array
+     */
+    public function relations()
+    {
+        return [];
+    }
+
+    /**
+     * 获取属性标签（name=>label）
+     * @return array
+     */
+    public function attributeLabels()
+    {
+        return [{labels}
+        ];
+    }{dbConnection}
+}

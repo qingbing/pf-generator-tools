@@ -1,0 +1,49 @@
+{
+    "name": "qingbing/pf-generator-tools",
+    "description": "pf 框架自动创建工具，支持控制器，模块，模型等",
+    "type": "library",
+    "license": "MIT",
+    "keywords": [
+        "php",
+        "php framework",
+        "php tools",
+        "auto-generator",
+        "generator-tools",
+        "database-dict",
+        "table-view"
+    ],
+    "homepage": "http://www.phpcorner.net",
+    "authors": [
+        {
+            "name": "qingbing",
+            "email": "780042175@qq.com"
+        }
+    ],
+    "require": {
+        "qingbing/php-helper": ">=1.0, <2.0",
+        "qingbing/php-html": ">=1.0, <2.0",
+        "qingbing/php-render": ">=1.0, <2.0",
+        "qingbing/php-database": ">=1.0, <2.0",
+        "qingbing/php-db-model": ">=1.0, <2.0",
+        "qingbing/php-assets-manager": ">=1.0, <2.0",
+        "qingbing/php-web-user": ">=1.0, <2.0",
+        "qingbing/php-error-handler": ">=1.0, <2.0",
+        "qingbing/php-file-cache": ">=1.0, <2.0",
+        "qingbing/php-captcha": ">=1.0, <2.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Gt\\": "src"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "App\\": "test/app",
+            "Controllers\\": "test/controllers",
+            "Admin\\": "test/modules/admin",
+            "Member\\": "test/modules/admin/modules/member",
+            "Program\\": "test/modules/program",
+            "Good\\": "test/modules/program/modules/good"
+        }
+    }
+}

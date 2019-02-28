@@ -1,0 +1,36 @@
+<?php
+namespace {ctrlNamespace}; // 申明命名空间
+// 引用类
+use {moduleNamespace}\components\Controller;
+
+/**
+ * Created by generate tool of phpcorner.
+ * Link         :   {link}
+ * User         :   {user}
+ * Date         :   {date}
+ * Version      :   1.0
+ */
+class {className} extends Controller
+{
+    /**
+     * 在执行action之前调用，可以用该函数来终止向下运行
+     * @param \Abstracts\Action $action
+     * @return bool
+     */
+    protected function beforeAction($action)
+    {
+        return true;
+    }
+
+    /**
+     * 默认action
+     * @throws \Helper\Exception
+     */
+    public function actionIndex()
+    {
+        // 设置页面标题
+        $this->setClip('title', \PF::app()->name);
+        // 渲染页面
+        $this->render('index', []);
+    }
+}

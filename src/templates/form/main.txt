@@ -1,0 +1,35 @@
+<?php
+namespace {moduleNamespace}\Models; // 申明命名空间
+// 引用类
+use Abstracts\FormModel;
+
+/**
+ * Created by generate tool of phpcorner.
+ * Link         :   {link}
+ * User         :   {user}
+ * Date         :   {date}
+ * Version      :   1.0
+ */
+class {className} extends FormModel
+{{properties}
+    /**
+     * 定义并返回模型属性的验证规则
+     * @return array
+     */
+    public function rules()
+    {
+        return [
+            ['{rules}', 'string'],
+        ];
+    }
+
+    /**
+     * 获取属性标签（name=>label）
+     * @return array
+     */
+    public function attributeLabels()
+    {
+        return [{labels}
+        ];
+    }
+}

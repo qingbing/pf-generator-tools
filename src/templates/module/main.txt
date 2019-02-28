@@ -1,0 +1,47 @@
+<?php
+namespace {newModuleNamespace}; // 申明命名空间
+// 引用类
+
+/**
+ * Created by generate tool of phpcorner.
+ * Link         :   {link}
+ * User         :   {user}
+ * Date         :   {date}
+ * Version      :   1.0
+ */
+class Module extends \Render\Abstracts\Module
+{
+    /**
+     * 属性配置完毕后的内容
+     * @throws \Helper\Exception
+     */
+    protected function afterConstruct()
+    {
+        // 代码，主要用户注册主键或初始化一些该模块的特有业务
+    }
+
+    /**
+     * 在调用action前执行
+     * <pre>
+     * if(parent::beforeControllerAction($controller,$action))
+     * {
+     *     // your code
+     *     return true;
+     * }
+     * else
+     *     return false;
+     * </pre>
+     * @param \Abstracts\BaseController $controller
+     * @param \Abstracts\Action $action
+     * @return bool
+     * @throws \Exception
+     */
+    public function beforeControllerAction($controller, $action)
+    {
+        if (parent::beforeControllerAction($controller, $action)) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+}

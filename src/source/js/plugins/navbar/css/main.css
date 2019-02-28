@@ -1,0 +1,56 @@
+.w-navbar{min-height:50px;border:1px solid #e7e7e7;background-color:#f8f8f8;right:0;left:0;color:#777;}
+@media (min-width: 768px) {
+    /* 大于等于768px */
+    .w-navbar{position:fixed;z-index:999;}
+}
+.w-navbar .container{}
+.w-navbar-top{top:0;border-width:0 0 1px 1px;}
+.w-navbar-bottom{bottom:0;border-width:1px 1px 0 0;}
+
+.w-navbar-brand{float:left;height:50px;padding:15px 15px;font-size:18px;line-height:20px;color:#777;}
+.w-navbar-brand:hover,
+.w-navbar-brand:focus{text-decoration:none;}
+.w-navbar-brand>img{display:block;}
+
+.input-group-addon.w-dropdown{display:table-cell;}
+
+.w-navbar .w-nav{padding-left:0;list-style:none;}
+.w-navbar a{text-decoration:none;color:#777;}
+.w-navbar a:hover{color:#333;}
+.w-navbar .active a{color:#333;}
+.w-navbar .disabled a{cursor:not-allowed;color:#ccc;}
+.w-navbar .input-group{display:inline-table;vertical-align:middle;}
+.w-navbar-form{margin-top:8px;border-top:1px solid transparent;border-bottom:1px solid transparent;-webkit-box-shadow:inset 0 1px 0 rgba(255, 255, 255, .1), 0 1px 0 rgba(255, 255, 255, .1);box-shadow:inset 0 1px 0 rgba(255, 255, 255, .1), 0 1px 0 rgba(255, 255, 255, .1);}
+.w-navbar-top .w-dropdown-menu{margin-top:0;border-top-left-radius:0;border-top-right-radius:0}
+.w-navbar-bottom .w-dropdown-menu{margin-bottom:0;border-bottom-left-radius:0;border-bottom-right-radius:0}
+.w-navbar .w-nav>li{display:block;line-height:50px;}
+.w-navbar .w-nav>li>*{padding-right:15px;padding-left:15px;}
+.w-navbar .w-nav>li>.w-dropdown-menu{padding-right:0;padding-left:0;}
+.w-navbar .w-nav>li.active{z-index:3;color:#fff;cursor:default;background-color:#e7e7e7;}
+
+.w-navbar-form{display:inline-table;width:auto;}
+.w-navbar-form .form-control{display:inline-block;width:auto;vertical-align:middle;}
+.w-navbar-form .form-control-static{display:inline-block;}
+.w-navbar-form .input-group{display:inline-table;vertical-align:middle;}
+.w-navbar-form .input-group .input-group-addon,
+.w-navbar-form .input-group .input-group-btn,
+.w-navbar-form .input-group .form-control{width:auto;}
+.w-navbar-form .input-group>.form-control{width:100%;}
+.w-navbar-form .control-label{margin-bottom:0;vertical-align:middle;}
+
+@media (min-width:768px){
+    /* 大于等于768px */
+    .w-navbar .w-navbar-ctrl{display:none;}
+    .w-navbar .w-nav>li{float:left;}
+    .w-navbar .w-nav{float:left;}
+    .w-navbar .w-navbar-right{float:right !important;}
+    .w-navbar .w-navbar-right .w-nav{float:right;}
+}
+
+@media not screen and (min-width:768px){
+    /* 小于768px */
+    .w-navbar .w-navbar-ctrl{font-size:18px;margin-top:5px;display:inline-block;float:right;}
+    .w-navbar .w-navbar-main{clear:both;display:none;}
+    .w-navbar .w-nav>.w-dropdown{}
+    .w-navbar .w-nav>.w-dropdown>.w-dropdown-menu{position:relative;width:100%;border:none;}
+}
