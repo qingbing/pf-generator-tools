@@ -1,3 +1,11 @@
 #header-container{height:65px;}
 .margin-top{margin-top:15px;}
 .margin-bottom{margin-bottom:15px;}
+#footer{background-color:#2a2730;color:#99979c;padding:36px 0;}
+#footer a{color:#fff;}
+#footer ul.links{padding-left:2em;zoom:1;*zoom:1;}
+#footer ul.links:after{display:block;clear:both;font-size:0;line-height:0;content:'.';visibility:hidden;}
+#footer ul.links li{float:left;margin-top:10px;padding:0 10px;list-style:none;border-left:1px solid #fff;}
+#footer ul.links li:first-child{border-left:none;}
+#footer ul.links li a{}
+#footer ul.links li a:hover{}

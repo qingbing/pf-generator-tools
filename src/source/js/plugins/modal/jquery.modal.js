@@ -58,7 +58,7 @@
                     var $objects = {};
                     var $box = $('#w-modal-id');
                     if (0 === $box.length) {
-                        $box = $('<div class="w-modal-box" id="w-modal-id"><div class="w-modal-layer"></div><div class="container"><div class="w-modal-body col-lg-10 col-md-10 col-sm-10 col-xs-10 col-lg-offset-1 col-md-offset-1 col-sm-offset-1 col-xs-offset-1">' +
+                        $box = $('<div class="w-modal-box" id="w-modal-id"><div class="w-modal-layer"></div><div class="container"><div class="w-modal-body col-lg-10 col-md-10 col-sm-10 col-lg-offset-1 col-md-offset-1 col-sm-offset-1">' +
                             '<div class="w-modal-header"><div class="w-modal-title"></div><a class="w-modal-close" href="javascript:void(0)"><span class="fa fa-close"></span></a></div>' +
                             '<div class="w-modal-content"></div>' +
                             '</div></div></div>').appendTo('body');

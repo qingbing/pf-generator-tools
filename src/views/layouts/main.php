@@ -33,4 +33,11 @@ $this->beginContent('/layouts/html');
     <div class="container">
         <div class="row"><?php echo $content; ?></div>
     </div>
+    <div id="footer">
+        <div class="container">
+            <p>
+                Power By @<a href="<?php echo PF::home(); ?>" target="_blank"><?php echo PF::name() . ' ' . PF::version(); ?></a>，Copy Right&copy; <?php echo PF::copyRight(); ?>
+            </p>
+        </div>
+    </div>
 <?php $this->endContent(); ?>
