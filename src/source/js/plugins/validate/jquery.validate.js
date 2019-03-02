@@ -280,19 +280,15 @@
                 },
                 rules: {
                     equal: '',
-                    min: '',
-                    max: '',
+                    minLength: '',
+                    maxLength: '',
                     ajaxUrl: '',
                     callback: ''
                 },
                 initParam: function (param) {
                     param.equalMsg = H.replace(param.equalMsg, param.equal);
-                    param.minErrorMsg = H.replace(param.minErrorMsg, param.min);
-                    param.maxErrorMsg = H.replace(param.maxErrorMsg, param.max);
-                },
-                getVal: function ($field) {
-                    let len = $field.val().length;
-                    return 0 === len ? '' : len;
+                    param.minErrorMsg = H.replace(param.minErrorMsg, param.minLength);
+                    param.maxErrorMsg = H.replace(param.maxErrorMsg, param.maxLength);
                 }
             },
             numeric: {
@@ -646,6 +642,18 @@
             },
             max: function (val, param) {
                 if (val <= param.max) {
+                    return true;
+                }
+                return param.maxErrorMsg;
+            },
+            minLength: function (val, param) {
+                if (val.length >= param.minLength) {
+                    return true;
+                }
+                return param.minErrorMsg;
+            },
+            maxLength: function (val, param) {
+                if (val.length <= param.maxLength) {
                     return true;
                 }
                 return param.maxErrorMsg;
