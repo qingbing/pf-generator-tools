@@ -1,5 +1,6 @@
 <?php
-namespace {newModuleNamespace}\controllers; // 申明命名空间
+// 申明命名空间
+namespace {newModuleNamespace}\controllers;
 // 引用类
 use {newModuleNamespace}\components\Controller;
 

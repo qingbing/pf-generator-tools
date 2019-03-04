@@ -1,5 +1,6 @@
 <?php
-namespace {moduleNamespace}\Models; // 申明命名空间
+// 申明命名空间
+namespace {moduleNamespace}\Models;
 // 引用类
 use Abstracts\FormModel;
 
