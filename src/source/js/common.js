@@ -93,8 +93,8 @@ jQuery(function () {
     });
     /**
      * confirm 定制的js
+     *      message     ：string
      */
-    // 确认执行链接
     $('.CONFIRM').click(function (e) {
         let msg = $(this).data('message');
         if (H.isEmpty(msg)) {
@@ -102,32 +102,40 @@ jQuery(function () {
         }
         return window.confirm(msg);
     });
-    // 确认执行ajax链接
+    /**
+     * confirm-ajax 定制js
+     *      message     ：string
+     *      url         ：string
+     *      args        ：json-string
+     *      reload      ：bool
+     */
     $('.CONFIRM_AJAX').click(function (e) {
         let $this = $(this);
         let msg = $this.data('message');
         if (H.isEmpty(msg)) {
             msg = '<i class="fa fa-smile-o"> 确认操作么？</i>';
         }
-        if (window.confirm(msg)) {
-            let url = $this.attr('href');
-            if (H.isEmpty(url)) {
-                url = $this.data('url');
-            }
-            if (!H.isEmpty(url)) {
-                PF.ajax()
-                PL.getData(url, E.toJson($this.data('args')), function (data, params) {
-                    let callback = E.toJson($this.data('callback'));
-                    if (E.isFunction(callback)) {
-                        callback(data, params);
-                    } else {
-                        if (true === $this.data('reload')) {
-                            E.reload();
-                        }
-                    }
-                });
-            }
+        if (!window.confirm(msg)) {
+            return false;
         }
+        let url = $this.attr('href');
+        if (H.isEmpty(url)) {
+            url = $this.data('url');
+        }
+        if (H.isEmpty(url)) {
+            $.alert("没有设置ajax-URL");
+            return false;
+        }
+        PF.ajax(url, H.toJson($this.data('args')), function (data) {
+            let callback = H.toJson($this.data('callback'));
+            if (H.isFunction(callback)) {
+                callback(data);
+            } else {
+                if (true === $this.data('reload')) {
+                    H.reload();
+                }
+            }
+        }, 'post');
         return false;
     });
 });
