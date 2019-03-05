@@ -11,7 +11,7 @@ use Html;
  * Date         :   {date}
  * Version      :   1.0
  *
- * @var \{newModuleNamespace}\components\Controller $this
+ * @var \{newModuleNamespace}\Components\Controller $this
  */
 ?>
 <h3 class="page-header">Welcome to <i><?php echo Html::encode(\PF::app()->name); ?></i></h3>

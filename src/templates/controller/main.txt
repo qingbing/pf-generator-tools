@@ -2,7 +2,7 @@
 // 申明命名空间
 namespace {ctrlNamespace};
 // 引用类
-use {moduleNamespace}\components\Controller;
+use {moduleNamespace}\Components\Controller;
 
 /**
  * Created by generate tool of phpcorner.
