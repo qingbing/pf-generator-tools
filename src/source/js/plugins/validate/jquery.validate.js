@@ -389,6 +389,10 @@
                     tipMsg: '请选择选项',
                     emptyMsg: '请选择选项',
                     helpBlock: ''
+                },
+                rules: {
+                    ajaxUrl: '',
+                    callback: ''
                 }
             },
             choice: {
@@ -431,6 +435,10 @@
                 getVal: function ($field) {
                     let len = $field.filter(':checked').length;
                     return 0 === len ? '' : len;
+                },
+                rules: {
+                    ajaxUrl: '',
+                    callback: ''
                 }
             }
         },
