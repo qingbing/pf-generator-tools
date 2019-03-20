@@ -25,11 +25,11 @@
         "qingbing/php-render": ">=1.0, <2.0",
         "qingbing/php-database": ">=1.0, <2.0",
         "qingbing/php-db-model": ">=1.0, <2.0",
-        "qingbing/php-assets-manager": ">=1.0, <2.0",
-        "qingbing/php-web-user": ">=1.0, <2.0",
-        "qingbing/php-error-handler": ">=1.0, <2.0",
         "qingbing/php-file-cache": ">=1.0, <2.0",
-        "qingbing/php-captcha": ">=1.0, <2.0"
+        "qingbing/pf-components-error-handler": ">=1.0, <2.0",
+        "qingbing/pf-components-assets-manager": ">=1.0, <2.0",
+        "qingbing/pf-widgets-captcha": ">=1.0, <2.0",
+        "qingbing/pf-abstracts-web-user": ">=1.0, <2.0"
     },
     "autoload": {
         "psr-4": {
