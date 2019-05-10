@@ -39,7 +39,9 @@
             },
             hide: function ($trigger) {
                 var op = PM.getOption($trigger);
-                op.$target.hide();
+                if (op && op.$target) {
+                    op.$target.hide();
+                }
             }
         },
         events: {
