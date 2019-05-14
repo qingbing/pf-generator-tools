@@ -1,6 +1,6 @@
 (function ($) {
-    var PM = new ParamsManager('dateRange');
-    var L = {
+    let PM = new ParamsManager('dateRange');
+    let L = {
         config: {
             ops: {
                 minDate: '', // 可选最小日期
@@ -20,11 +20,11 @@
             }
         },
         initOp: function ($trigger, op) {
-            var tp = PM.getOption($trigger);
+            let tp = PM.getOption($trigger);
             if (H.isDefined(tp)) {
                 return tp;
             }
-            var cop = {
+            let cop = {
                 "showDropdowns": true, // 年月是否用下拉方式展示 true | false(default)
                 "showWeekNumbers": true, // 是否显示年中周的表示
                 "opens": op.opens, // 面板横向：right(default) | center | left
@@ -80,13 +80,16 @@
                 cop.timePicker = true; // 是否显示时间 true | false(default)
                 cop.timePicker24Hour = true; // 是否24小时显示 true | false(default)
                 cop.timePickerSeconds = true; // 是否显示秒 true | false(default)
+                if ('YYYY-MM-DD' === cop.locale.format) {
+                    cop.locale.format = 'YYYY-MM-DD HH:mm:ss';
+                }
                 if (op.timeIncrement && H.isInteger(op.timeIncrement) && op.timeIncrement > 1) {
                     cop.timePickerIncrement = op.timeIncrement; // minute 分的显示间隔，默认为1
                 }
             }
-            var $input = $trigger.children('input[type="text"]');
+            let $input = $trigger.children('input[type="text"]');
             if (1 === $input.length) {
-                var val = $input.val(),
+                let val = $input.val(),
                     split = val.split(cop.locale.separator), start = null, end = null;
                 if (2 === split.length) {
                     start = moment(split[0], cop.locale.format);
@@ -107,7 +110,7 @@
                     }
                 });
                 if (op.clean) {
-                    var $clean = $('<span class="input-group-addon fa fa-close w-dateRange-clean"></span>').insertAfter($input);
+                    let $clean = $('<span class="input-group-addon fa fa-trash w-dateRange-clean"></span>').insertAfter($input);
                     $clean.on('click', L.events.clickCleanBtn);
                 }
             } else {
@@ -134,9 +137,9 @@
         dateRange: function (ops) {
             ops = $.extend(true, {}, L.config.ops, ops);
             $(this).each(function () {
-                var $this = $(this);
+                let $this = $(this);
                 // 扩展参数设置
-                var data = $this.data();
+                let data = $this.data();
                 L.run($this, L.initOp($this, $.extend(true, {}, ops, data)));
             });
             return this;
