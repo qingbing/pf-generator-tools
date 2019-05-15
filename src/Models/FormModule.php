@@ -123,13 +123,13 @@ class FormModule extends FormBase
         if (!is_dir($newModuleBasePath)) {
             @mkdir($newModuleBasePath);
         }
-        if (!is_dir($_path = $newModuleBasePath . '/components')) {
+        if (!is_dir($_path = $newModuleBasePath . '/Components')) {
             @mkdir($_path);
         }
-        if (!is_dir($_path = $newModuleBasePath . '/controllers')) {
+        if (!is_dir($_path = $newModuleBasePath . '/Controllers')) {
             @mkdir($_path);
         }
-        if (!is_dir($_path = $newModuleBasePath . '/models')) {
+        if (!is_dir($_path = $newModuleBasePath . '/Models')) {
             @mkdir($_path);
         }
         if (!is_dir($_path = $newModuleBasePath . '/views')) {
@@ -150,7 +150,7 @@ class FormModule extends FormBase
         }
 
         // 创建公用控制器
-        $_file = $newModuleBasePath . '/components/Controller.php';
+        $_file = $newModuleBasePath . '/Components/Controller.php';
         if (!file_exists($_file)) {
             $template = file_get_contents($this->getTemplatePath() . '/module/components/Controller.txt');
             $content = str_cover($template, [
@@ -168,7 +168,7 @@ class FormModule extends FormBase
         }
 
         // 创建默认控制器
-        $_file = $newModuleBasePath . '/controllers/DefaultController.php';
+        $_file = $newModuleBasePath . '/Controllers/DefaultController.php';
         if (!file_exists($_file)) {
             $template = file_get_contents($this->getTemplatePath() . '/module/controllers/DefaultController.txt');
             $content = str_cover($template, [
