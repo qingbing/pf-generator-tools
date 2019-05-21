@@ -15,7 +15,7 @@ return [
             'cookieKey' => 'gt.user.username',
             'rememberTime' => 864000,
             'namespace' => 'gt.user',
-            'expire' => 1800,
+            'expire' => 600,
             'prefix' => 'gt.user_',
             'loginUrl' => ['gt/login/index'],
             'returnUrl' => ['gt/default/index'],
