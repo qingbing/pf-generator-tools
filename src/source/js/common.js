@@ -155,16 +155,33 @@ jQuery(function () {
             $.alert("没有设置ajax-URL");
             return false;
         }
-        PF.ajax(url, H.toJson($this.data('args')), function (data) {
-            let callback = H.toJson($this.data('callback'));
-            if (H.isFunction(callback)) {
-                callback(data);
-            } else {
-                if (true === $this.data('reload')) {
-                    H.reload();
+
+        let postData = H.toJson($this.data('args'));
+        let async = false, R = false; // 非异步（等待执行）
+        let callback = H.toJson($this.data('callback'));
+        if (H.isFunction(callback)) {
+            // 当拥有回调函数是，表示异步
+            async = true;
+        }
+        $.ajax({
+            url: url,
+            type: 'POST',
+            async: async,
+            dataType: 'json',
+            data: postData,
+            success: function (rs) {
+                if (0 !== parseInt(rs.code)) {
+                    $.alert("" + rs.code + " : " + rs.message, 'danger');
+                } else if (async) {
+                    callback(rs);
+                } else {
+                    $.alert(rs.message, 'info');
+                    if (true === $this.data('reload')) {
+                        H.reload();
+                    }
                 }
             }
-        }, 'post');
+        });
         return false;
     });
 });
