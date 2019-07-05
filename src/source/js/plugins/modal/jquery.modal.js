@@ -1,6 +1,6 @@
 (function ($) {
-    var PM = new ParamsManager('modal');
-    var L = {
+    let PM = new ParamsManager('modal');
+    let L = {
         config: {
             clientH: undefined,
             opened: [],
@@ -15,18 +15,22 @@
             }
         },
         initOp: function ($trigger, op) {
-            var tp = PM.getOption($trigger);
-            if (H.isDefined(tp)) {
-                return tp;
+            if (H.isDefined($trigger)) {
+                let tp = PM.getOption($trigger);
+                if (H.isDefined(tp)) {
+                    return tp;
+                }
+                if (H.isEmpty(op.href)) {
+                    let _h = $trigger.attr('href');
+                    _h && (op.href = _h);
+                }
+            } else if (!H.isDefined(op.href)) {
+                return false;
             }
             // 如果没有标题，不显示关闭按钮
             if (!op.title) {
                 op.showCloseBtn = false;
                 op.layerClose = true;
-            }
-            if (H.isEmpty(op.href)) {
-                var _h = $trigger.attr('href');
-                _h && (op.href = _h);
             }
             if (op.href) {
                 op.type = 'iframe';
@@ -41,8 +45,10 @@
                 op.htmlCallback = H.toJson(op.htmlCallback);
             }
             op.closeCallback = H.toJson(op.closeCallback);
-            PM.setOption($trigger, op);
-            PM.addTrigger($trigger);
+            if (H.isDefined($trigger)) {
+                PM.setOption($trigger, op);
+                PM.addTrigger($trigger);
+            }
             return op;
         },
         run: function ($trigger, op) {
@@ -55,8 +61,8 @@
         func: {
             appendBox: function () {
                 if (!H.isDefined(L.config.$objects)) {
-                    var $objects = {};
-                    var $box = $('#w-modal-id');
+                    let $objects = {};
+                    let $box = $('#w-modal-id');
                     if (0 === $box.length) {
                         $box = $('<div class="w-modal-box" id="w-modal-id"><div class="w-modal-layer"></div><div class="container"><div class="w-modal-body col-lg-10 col-md-10 col-sm-10 col-lg-offset-1 col-md-offset-1 col-sm-offset-1">' +
                             '<div class="w-modal-header"><div class="w-modal-title"></div><a class="w-modal-close" href="javascript:void(0)"><span class="fa fa-close"></span></a></div>' +
@@ -89,13 +95,22 @@
                 }
             },
             getParams: function ($trigger) {
-                var subOps = $.extend({}, PM.getOption($trigger));
-                subOps.height = L.config.clientH - 100;
-                return subOps;
+                return $.extend({}, PM.getOption($trigger));
             },
-            show: function ($trigger) { // todo
-                var subOps = L.func.getParams($trigger);
+            show: function (subOps, $trigger) {
+                if (H.isDefined($trigger)) {
+                    subOps = L.func.getParams($trigger);
+                } else {
+                    subOps = L.initOp(undefined, subOps);
+                    if (!subOps) {
+                        return false;
+                    }
+                }
+                if (!H.isDefined(subOps.height)) {
+                    subOps.height = L.config.clientH - 100;
+                }
                 L.config.$objects.$body.css({
+                    top: ((L.config.clientH - subOps.height) / 2 + 'px'),
                     height: subOps.height
                 });
                 if (subOps.title) {
@@ -136,7 +151,7 @@
                 H.stopPropagation(e);
             },
             clickTrigger: function (e) {
-                L.func.show($(this));
+                L.func.show(undefined, $(this));
                 H.stopPropagation(e);
                 H.preventDefault(e);
             },
@@ -151,8 +166,8 @@
     if (!H.isDefined(window.modal)) {
         window.modal = {};
     }
-    var hideModal = window.modal.hide = function (doNothing, reload, args) {
-        var subOps = L.config.opened.pop();
+    let hideModal = window.modal.hide = function (doNothing, reload, args) {
+        let subOps = L.config.opened.pop();
         L.config.$objects.$box.hide();
         if (subOps.layerClose) {
             L.config.$objects.$layer.off('click', L.events.layerClose);
@@ -169,19 +184,23 @@
     window.modal.getArguments = function () {
         return L.config.opened[L.config.opened.length - 1];
     };
+    // js 新开modal
+    window.modal.open = function (ops) {
+        L.func.show(ops);
+    };
 
     /**
      */
     $.fn.extend({
         modal: function (ops) {
-            if ($(this).length > 0) {
-                L.func.appendBox();
-            }
+            // 加载modal的框架
+            L.func.appendBox();
+
             ops = $.extend(true, {}, L.config.ops, ops);
             $(this).each(function () {
-                var $this = $(this);
+                let $this = $(this);
                 // 扩展参数设置
-                var data = $this.data();
+                let data = $this.data();
                 L.run($this, L.initOp($this, $.extend(true, {}, ops, data)));
             });
             return this;

@@ -7,7 +7,7 @@
 .w-navbar-top{top:0;border-width:0 0 1px 1px;}
 .w-navbar-bottom{bottom:0;border-width:1px 1px 0 0;}
 
-.w-navbar-brand{float:left;height:50px;padding:15px 15px;font-size:18px;line-height:20px;color:#777;}
+.w-navbar-brand{float:left;height:50px;padding:10px 10px;font-size:18px;line-height:20px;color:#777;}
 .w-navbar-brand:hover,
 .w-navbar-brand:focus{text-decoration:none;}
 .w-navbar-brand>img{display:block;}
@@ -24,7 +24,7 @@
 .w-navbar-top .w-dropdown-menu{margin-top:0;border-top-left-radius:0;border-top-right-radius:0}
 .w-navbar-bottom .w-dropdown-menu{margin-bottom:0;border-bottom-left-radius:0;border-bottom-right-radius:0}
 .w-navbar .w-nav>li{display:block;line-height:50px;}
-.w-navbar .w-nav>li>*{padding-right:15px;padding-left:15px;}
+.w-navbar .w-nav>li>*{padding-right:10px;padding-left:10px;}
 .w-navbar .w-nav>li>.w-dropdown-menu{padding-right:0;padding-left:0;}
 .w-navbar .w-nav>li.active{z-index:3;color:#fff;cursor:default;background-color:#e7e7e7;}
 

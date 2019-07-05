@@ -1,7 +1,7 @@
 /**
  * 参数管理类
  */
-var ParamsManager = function (wn) {
+let ParamsManager = function (wn) {
     /**
      * 触发元素保存参数的名称
      * @type {string}
@@ -71,7 +71,7 @@ var ParamsManager = function (wn) {
      * @param callback
      */
     this.each = function (callback) {
-        for (var i in this.__triggers) {
+        for (let i in this.__triggers) {
             callback(this.__triggers[i]);
         }
     }
@@ -79,12 +79,12 @@ var ParamsManager = function (wn) {
 /**
  * ProjectFunction
  */
-var PF = {
+let PF = {
     ajax: function (ajaxUrl, postData, callback, failure, method) {
         if (!H.isDefined(method)) {
             method = 'POST';
         }
-        var async = false, R = false; // 非异步（等待执行）
+        let async = false, R = false; // 非异步（等待执行）
         if (H.isFunction(callback)) {
             // 当拥有回调函数是，表示异步
             async = true;
@@ -119,8 +119,8 @@ var PF = {
      * @returns {{}}
      */
     getFormData: function ($form) {
-        var nv = $form.serializeArray();
-        var R = {};
+        let nv = $form.serializeArray();
+        let R = {};
         H.each(nv, function (i, v) {
             R[v.name] = v.value;
         });
@@ -130,7 +130,7 @@ var PF = {
 /**
  * 定义一些常用的或自动导入的类
  */
-var Loader = {
+let Loader = {
     __loadedPlugins: {},
     loadCss: function (path, basePath) {
         if (basePath) {
@@ -267,7 +267,7 @@ var Loader = {
         'select': '.w-select',
         'editTable': '.w-edit-table',
         'player': '.w-player',
-        'modal': '.w-modal',
+        // 'modal': '.w-modal',
         'menu': '.w-menu',
         'dateRange': '.w-dateRange',
         'validate': '.w-validate',
@@ -278,6 +278,8 @@ var Loader = {
 jQuery(document).ready(function ($) {
     // 加载alert组件
     Loader.loadAlert();
+    // modal 组件自动加载
+    Loader.modal($('.w-modal'));
     // 禁用一些class的事件
     $('.divider,.disabled,[disabled]').on('click', function (e) {
         H.preventDefault(e);
@@ -285,7 +287,7 @@ jQuery(document).ready(function ($) {
     });
     // 自动加载组件
     H.each(Loader.configs, function (key, target) {
-        var $targets = $(target);
+        let $targets = $(target);
         if ($targets.length > 0 && H.isFunction(Loader[key])) {
             Loader[key]($targets);
         }

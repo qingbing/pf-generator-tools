@@ -71,117 +71,91 @@ jQuery(function () {
      * modal 定制的js
      */
     // 关闭父页面 modal
-    $('.MODAL-CLOSE').click(function (e) {
+    $('.MODAL-CLOSE').on('click', function (e) {
         parent.modal.hide(true);
         H.preventDefault(e);
     });
     // 关闭父页面 modal, 并刷新父页面
-    $('.MODAL-CLOSE-RELOAD').click(function (e) {
+    $('.MODAL-CLOSE-RELOAD').on('click', function (e) {
         parent.modal.hide(false, true);
         H.preventDefault(e);
     });
     // 关闭父页面 modal, 并执行父页面 modal 的回调函数
-    $('.MODAL-CLOSE-CALLBACK').click(function (e) {
-        let _data = $(this).data();
-        if (H.isDefined(_data.callback)) {
-            _data.callback = H.toJson(_data.callback);
-            parent.modal.hide(false, false, _data.callback());
+    $('.MODAL-CLOSE-CALLBACK').on('click', function (e) {
+        let callback = $(this).data('callback');
+        if (H.isDefined(callback)) {
+            callback = H.toJson(callback);
+            parent.modal.hide(false, false, callback($(this)));
         } else {
             parent.modal.hide(true);
         }
         H.preventDefault(e);
     });
     /**
-     * confirm 定制的js
-     *      message     ：string
+     * action、confirm 、ajax 综合定制
+     * 支持参数
+     *      before : 执行前调用函数，返回非true将终止后续执行
+     *      message : 一旦设置message，将使用 window.confirm 函数让用户确认是否继续操作
+     *      is-ajax : 一旦设置属性，请求将通过走ajax的方式来执行指定中的连接
+     *      post-data : ajax传递的post请求参数
+     *      callback : ajax 执行完后的回调函数
      */
-    $('.CONFIRM').click(function (e) {
-        let msg = $(this).data('message');
-        if (H.isEmpty(msg)) {
-            msg = '确认操作么？';
-        }
-        return window.confirm(msg);
-    });
-    /**
-     * confirm-ajax 定制js
-     *      message     ：string
-     *      url         ：string
-     *      args        ：json-string
-     *      reload      ：bool
-     */
-    $('.CONFIRM_AJAX').click(function (e) {
+    $('.ACTION-HREF').on('click', function (e) {
         let $this = $(this);
-        let msg = $this.data('message');
-        if (H.isEmpty(msg)) {
-            msg = '<i class="fa fa-smile-o"> 确认操作么？</i>';
-        }
-        if (!window.confirm(msg)) {
-            return false;
-        }
-        let url = $this.attr('href');
-        if (H.isEmpty(url)) {
-            url = $this.data('url');
-        }
-        if (H.isEmpty(url)) {
-            $.alert("没有设置ajax-URL");
-            return false;
-        }
-        PF.ajax(url, H.toJson($this.data('args')), function (data) {
-            let callback = H.toJson($this.data('callback'));
-            if (H.isFunction(callback)) {
-                callback(data);
-            } else {
-                if (true === $this.data('reload')) {
-                    H.reload();
-                }
+        let data = $this.data();
+        if (H.isDefined(data.before)) {
+            data.before = H.toJson(data.before);
+            if (!H.isFunction(data.before)) {
+                $.alert('操作功能函数不存在', 'danger');
+                H.preventDefault(e);
+                return false;
             }
-        }, 'post');
-        return false;
-    });
-    /**
-     * ajax 定制js
-     *      message     ：string
-     *      url         ：string
-     *      args        ：json-string
-     *      reload      ：bool
-     */
-    $('.AJAX').on('click', function (e) {
-        let $this = $(this);
+            if (true !== data.before($this, data)) {
+                H.preventDefault(e);
+                return false;
+            }
+        }
+        if (H.isDefined(data.message)) {
+            if (H.isEmpty(data.message)) {
+                data.message = '可能操作后数据无法恢复，确认操作么？';
+            }
+            if (!window.confirm(data.message)) {
+                H.preventDefault(e);
+                return false;
+            }
+        }
+        if (!H.isDefined(data.isAjax)) {
+            return true;
+        }
+        data.callback = H.toJson(data.callback);
         let url = $this.attr('href');
         if (H.isEmpty(url)) {
-            url = $this.data('url');
+            url = data.ajaxUrl;
         }
         if (H.isEmpty(url)) {
             $.alert("没有设置ajax-URL");
             return false;
-        }
-
-        let postData = H.toJson($this.data('args'));
-        let async = false, R = false; // 非异步（等待执行）
-        let callback = H.toJson($this.data('callback'));
-        if (H.isFunction(callback)) {
-            // 当拥有回调函数是，表示异步
-            async = true;
         }
         $.ajax({
             url: url,
             type: 'POST',
-            async: async,
+            async: true,
             dataType: 'json',
-            data: postData,
+            data: H.toJson(data.postData),
             success: function (rs) {
                 if (0 !== parseInt(rs.code)) {
                     $.alert("" + rs.code + " : " + rs.message, 'danger');
-                } else if (async) {
-                    callback(rs);
+                } else if (H.isFunction(data.callback)) {
+                    data.callback(rs, $this);
                 } else {
                     $.alert(rs.message, 'info');
-                    if (true === $this.data('reload')) {
-                        H.reload();
+                    if (true === data.reload) {
+                        setTimeout(H.reload, 1000);
                     }
                 }
             }
         });
+        H.preventDefault(e);
         return false;
     });
 });
