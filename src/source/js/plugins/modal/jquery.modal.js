@@ -11,6 +11,7 @@
                 'title': undefined,
                 'htmlCallback': undefined,
                 'htmlContent': undefined,
+                'beforeCallback': undefined,
                 'closeCallback': undefined
             }
         },
@@ -44,8 +45,10 @@
                 }
                 op.htmlCallback = H.toJson(op.htmlCallback);
             }
+            op.beforeCallback = H.toJson(op.beforeCallback);
             op.closeCallback = H.toJson(op.closeCallback);
             if (H.isDefined($trigger)) {
+                op.$trigger = $trigger;
                 PM.setOption($trigger, op);
                 PM.addTrigger($trigger);
             }
@@ -105,6 +108,9 @@
                     if (!subOps) {
                         return false;
                     }
+                }
+                if (H.isFunction(subOps.beforeCallback) && true !== subOps.beforeCallback(subOps)) {
+                    return false;
                 }
                 if (!H.isDefined(subOps.height)) {
                     subOps.height = L.config.clientH - 100;

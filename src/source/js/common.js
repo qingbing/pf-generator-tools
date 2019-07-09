@@ -94,7 +94,7 @@ jQuery(function () {
     /**
      * action、confirm 、ajax 综合定制
      * 支持参数
-     *      before : 执行前调用函数，返回非true将终止后续执行
+     *      beforeCallback : 执行前调用函数，返回非true将终止后续执行
      *      message : 一旦设置message，将使用 window.confirm 函数让用户确认是否继续操作
      *      is-ajax : 一旦设置属性，请求将通过走ajax的方式来执行指定中的连接
      *      post-data : ajax传递的post请求参数
@@ -103,14 +103,14 @@ jQuery(function () {
     $('.ACTION-HREF').on('click', function (e) {
         let $this = $(this);
         let data = $this.data();
-        if (H.isDefined(data.before)) {
-            data.before = H.toJson(data.before);
-            if (!H.isFunction(data.before)) {
+        if (H.isDefined(data.beforeCallback)) {
+            data.beforeCallback = H.toJson(data.beforeCallback);
+            if (!H.isFunction(data.beforeCallback)) {
                 $.alert('操作功能函数不存在', 'danger');
                 H.preventDefault(e);
                 return false;
             }
-            if (true !== data.before($this, data)) {
+            if (true !== data.beforeCallback($this, data)) {
                 H.preventDefault(e);
                 return false;
             }
