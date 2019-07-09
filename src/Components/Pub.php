@@ -8,13 +8,8 @@
 
 namespace Gt\Components;
 
-
-use Components\AssetsManager;
-
 class Pub
 {
-    private static $_assetUrl;
-
     /**
      * 获取当前 application
      * @return \Abstracts\Application|\Render\Application
@@ -41,23 +36,5 @@ class Pub
     public static function getUser()
     {
         return self::getModule()->getComponent('user');
-    }
-
-    /**
-     * 发布资源
-     * @throws \Helper\Exception
-     */
-    public static function publishAssets()
-    {
-        self::$_assetUrl = AssetsManager::getInstance('assets-manager')->publish(dirname(__DIR__) . '/source', 'gt');
-    }
-
-    /**
-     * 获取发布资源的跟目录
-     * @return mixed
-     */
-    public static function getAssetBaseUrl()
-    {
-        return self::$_assetUrl;
     }
 }

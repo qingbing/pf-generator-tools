@@ -32,8 +32,6 @@ class Module extends \Render\Abstracts\Module
                 'errorAction' => '//gt/default/error',
             ],
         ]);
-        // 资源复制
-        Pub::publishAssets();
     }
 
     /**

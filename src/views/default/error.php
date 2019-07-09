@@ -1,6 +1,6 @@
 <?php
 /* @var $this \Gt\components\Controller */
-ClientScript::getInstance()->registerCssFile(\Gt\Components\Pub::getAssetBaseUrl() . '/css/error.css');
+ClientScript::getInstance()->registerCssFile(\Assets001::getAssetBaseUrl() . '/css/error.css');
 ?>
 <div id="error-box">
     <div id="error-desktop"><i class="fa fa-television"></i></div>

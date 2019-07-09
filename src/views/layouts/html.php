@@ -1,7 +1,7 @@
 <?php
 /* @var \Gt\Components\Controller $this */
 /* @var string $content */
-$assetBaseUrl = \Gt\Components\Pub::getAssetBaseUrl();
+$assetBaseUrl = \Assets001::getAssetBaseUrl();
 ?><!doctype html>
 <html lang="en">
 <head>

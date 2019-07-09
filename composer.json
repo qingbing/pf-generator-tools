@@ -19,7 +19,7 @@
             "email": "780042175@qq.com"
         }
     ],
-    "require": {
+    "require-dev": {
         "qingbing/php-helper": ">=1.0, <2.0",
         "qingbing/php-html": ">=1.0, <2.0",
         "qingbing/php-render": ">=1.0, <2.0",
@@ -29,7 +29,8 @@
         "qingbing/pf-components-error-handler": ">=1.0, <2.0",
         "qingbing/pf-components-assets-manager": ">=1.0, <2.0",
         "qingbing/pf-widgets-captcha": ">=1.0, <2.0",
-        "qingbing/pf-abstracts-web-user": ">=1.0, <2.0"
+        "qingbing/pf-abstracts-web-user": ">=1.0, <2.0",
+        "qingbing/pf-assets-001": ">=1.0, <2.0"
     },
     "autoload": {
         "psr-4": {
